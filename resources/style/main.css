@@ -16,18 +16,67 @@
 body{
     font-family: "Roman";
     position:relative;
-    background-color:black;
+    background-color:#00151f;
     color:white;
     text-align:center;
     padding:0;
     margin:0;
     width: 100%;
     height: 100%;
+    transition: 0.5s;
 }
 
 ::selection {
-    background: black;
+    background: #00151f;
   }
 ::-moz-selection {
-background: black;
+background: #00151f;
 }
+
+/* Night mode */
+body.day
+{
+    background: #fff;
+}
+.toggleDayNight
+{
+    z-index: 10;
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    background: #00151f;
+    border: 2px solid #fff;
+    width: 45px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.toggleDayNight.active
+{
+    background: #fff;
+    border: 2px solid #00151f;
+}
+.toggleDayNight:before
+{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.toggleDayNight.active:before
+{
+    left: 27px;
+    background: #00151f;
+}
+body.day .content h1,
+body.day .content p
+{
+    color: #000000;
+}
+/* End Night mode */

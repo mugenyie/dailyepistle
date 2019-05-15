@@ -72,6 +72,9 @@ function getVerse(fresh) {
   console.log(chosen);
   console.log(reference);
 
+  // $("meta[property='og:title']").attr("content", reference);
+  // $("meta[property='og:description']").attr("content", chosen);
+
   $('#verse').html(chosen + "<br /><br />" + reference);
   $('#refresh').html("&#x21bb;");
 }

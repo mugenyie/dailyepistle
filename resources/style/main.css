@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Epistle";
+    src: url("../fonts/Epistle-Regular.ttf");
+    }
+
+body{
+    font-family: "Epistle";
+    position:relative;
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:0;
+    margin:0;
+    width: 100%;
+    height: 100%;
+}
+
+::selection {
+    background: black;
+  }
+::-moz-selection {
+background: black;
+}

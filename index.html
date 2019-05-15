@@ -1,12 +1,96 @@
 <html>
 <head>
-  <title>DailyEpistle</title>  
-  <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
-    <script src="resources/bible.js"></script>
+<title>DailyEpistle</title>
+<meta name="description" content="Random scripture readings to renew and draw you closer to God - Daily Epistle">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Emmanuel Columbus Mugenyi">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="resources/style/main.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script src="resources/js/clipboard.min.js"></script>
+<script src="resources/js/qurl.js"></script>
+<script>
+var bible;
+function resize() {
+  if ($(document).ready()) {
+    $("#verse").css("font-size", ($(window).height() + $(window).width()) * .025 + "px");
+    $("#refresh").css("font-size", ($(window).height() + $(window).width()) * .05 + "px");
+  }
+}
+$(document).ready(function() {
+  $("#verse").css("font-size", ($(window).height() + $(window).width()) * .025);
+  $("#refresh").css("font-size", ($(window).height() + $(window).width()) * .05);
+  $.getJSON('resources/bibles/web.json', function(data) {
+    bible = data;
+    getVerse(0);
+  });
+  new Clipboard('#verse', {
+    target: function(trigger) {
+      setTimeout(function(){document.getSelection().removeAllRanges();},150);
+      $(trigger).css("color", "grey");
+      setTimeout(function(){$(trigger).css("color", "white")},200);
+      return trigger;
+    }
+  });
+});
+
+function getVerse(fresh) {
+  var url = Qurl.create();
+  if (fresh) {
+    var max = 66;
+    var min = 1;
+    var book = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    var max = Object.keys(bible.version[book].book).length;
+    var min = 1;
+    var chapter = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    var max = Object.keys(bible.version[book].book[chapter].chapter).length;
+    var min = 1;
+    var verse = Math.floor(Math.random() * (max - min + 1)) + min;
+  } else {
+    var book = url.query('b');
+    var chapter = url.query('c');
+    var verse = url.query('v');
+    if (!book || !chapter || !verse) {
+      var max = 66;
+      var min = 1;
+      var book = Math.floor(Math.random() * (max - min + 1)) + min;
+      
+      var max = Object.keys(bible.version[book].book).length;
+      var min = 1;
+      var chapter = Math.floor(Math.random() * (max - min + 1)) + min;
+      
+      var max = Object.keys(bible.version[book].book[chapter].chapter).length;
+      var min = 1;
+      var verse = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  }
+  url.query('b',book);
+  url.query('c',chapter);
+  url.query('v',verse);
+  
+  var chosen = bible.version[book].book[chapter].chapter[verse].verse;
+  var reference = bible.version[book].book_name + " " + chapter + ":" + verse;
+  
+  console.log(chosen);
+  console.log(reference);
+
+  $('#verse').html(chosen + "<br /><br />" + reference);
+  $('#refresh').html("&#x21bb;");
+}
+</script>
+
 </head>
-<body>
-  <p>Chapter:<span id="chapter"> </span></p>
-  <p>Verse: <span id="verse"></span></p>
-  <button id="generate">New Verse</button>
+<body onresize="resize()">
+<p id="verse" style="width:60%;top:0;position:absolute;padding:10px 20% 10px 20%;margin:0;"></p>
+<br /><br /><br />
+<p id="refresh" style="cursor: pointer;width:100%;bottom:0;position:absolute;padding:0;margin:0;" onclick="getVerse(1)"></p>
 </body>
 </html>

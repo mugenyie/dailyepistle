@@ -1,2 +1,2 @@
 # DailyEpistle
-Awaken to the reality of God in your life #DailyEpistle
+Random bible verses to renew and draw you closer to God

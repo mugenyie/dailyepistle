@@ -67,7 +67,7 @@ function getVerse(fresh) {
   url.query('v',verse);
   
   var chosen = bible.version[book].book[chapter].chapter[verse].verse;
-  var reference = bible.version[book].book_name + " " + chapter + ":" + verse;
+  var reference = bible.version[book].book_name + " " + chapter + ":" + verse +" "+ bible.version_ref;
   
   console.log(chosen);
   console.log(reference);

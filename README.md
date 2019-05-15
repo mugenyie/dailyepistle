@@ -1,2 +1,3 @@
 # DailyEpistle
-Random bible verses to renew and draw you closer to God
+
+Random bible devotional verses to nourish your soul

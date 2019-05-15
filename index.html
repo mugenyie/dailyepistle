@@ -26,7 +26,7 @@ function resize() {
 $(document).ready(function() {
   $("#verse").css("font-size", ($(window).height() + $(window).width()) * .025);
   $("#refresh").css("font-size", ($(window).height() + $(window).width()) * .05);
-  $.getJSON('resources/bibles/web.json', function(data) {
+  $.getJSON('resources/bibles/kjv.json', function(data) {
     bible = data;
     getVerse(0);
   });

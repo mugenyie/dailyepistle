@@ -3,8 +3,13 @@
     src: url("../fonts/Epistle-Regular.ttf");
     }
 
+    @font-face {
+        font-family: "Amulet";
+        src: url("../fonts/amulet.ttf");
+        }
+
 body{
-    font-family: "Epistle";
+    font-family: "Amulet";
     position:relative;
     background-color:black;
     color:white;

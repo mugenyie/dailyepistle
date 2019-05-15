@@ -8,8 +8,13 @@
         src: url("../fonts/amulet.ttf");
         }
 
+    @font-face {
+        font-family: "Roman";
+        src: url("../fonts/day-roman.ttf");
+        }
+
 body{
-    font-family: "Amulet";
+    font-family: "Roman";
     position:relative;
     background-color:black;
     color:white;

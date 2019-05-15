@@ -41,9 +41,9 @@ body.day
 .toggleDayNight
 {
     z-index: 10;
-    position: absolute;
+    position: fixed;
     top: 40px;
-    right: 50px;
+    right: 3%;
     background: #00151f;
     border: 2px solid #fff;
     width: 45px;

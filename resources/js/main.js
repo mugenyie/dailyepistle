@@ -69,12 +69,32 @@ function getVerse(fresh) {
   var chosen = bible.version[book].book[chapter].chapter[verse].verse;
   var reference = bible.version[book].book_name + " " + chapter + ":" + verse +" "+ bible.version_ref;
   
-  console.log(chosen);
-  console.log(reference);
+  var description = chosen;
+  var title = reference +' '+limitWords(description, 15)+' | DailyEpistle';
+  console.log(title);
 
-  // $("meta[property='og:title']").attr("content", reference);
-  // $("meta[property='og:description']").attr("content", chosen);
+  document.title = title;
+
+  $('meta[name=description]'). remove();
+  $('head'). append( '<meta name="description" content='+description+'>' );
 
   $('#verse').html(chosen + "<br /><br />" + reference);
   $('#refresh').html("&#x21bb;");
+}
+
+function getCookie(name) {
+  var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return v ? v[2] : null;
+}
+
+function deleteCookie(name) { setCookie(name, '', -1); }
+
+function setCookie(name, value, days) {
+  var d = new Date;
+  d.setTime(d.getTime() + 24*60*60*1000*days);
+  document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+}
+
+function limitWords(textToLimit, wordLimit) {
+  return '\"'+textToLimit.split(" ").splice(0,wordLimit).join(" ")+'...\"';
 }

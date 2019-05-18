@@ -70,7 +70,7 @@ function getVerse(fresh) {
   var reference = bible.version[book].book_name + " " + chapter + ":" + verse +" "+ bible.version_ref;
   
   var description = chosen;
-  var title = reference +' '+limitWords(description, 20)+' via @DailyEpistle #DailyEpistle';
+  var title = reference +' '+limitWords(description, 20)+' via @dailyepistle';
   console.log(title);
 
   document.title = title;
